@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin PMS - Patients</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col items-center justify-center">
+            <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open menu</label>
+            
+            <h1 class="text-4xl font-bold mb-8">Patients</h1>
+            
+            <div class="mb-4">
+                <button class="btn btn-primary" onclick="openAddPatientModal()">Add Patient</button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientsList">
+                        <!-- Patients will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        <div class="drawer-side">
+            <label for="my-drawer-2" class="drawer-overlay"></label> 
+            <ul class="menu p-4 w-80 h-full bg-base-200 text-base-content">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="patients.html" class="active">Patients</a></li>
+                <li><a href="appointments.html">Appointments</a></li>
+                <li><a id="logoutBtn">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Add Patient Modal -->
+    <dialog id="add_patient_modal" class="modal">
+        <form method="dialog" class="modal-box">
+            <h3 class="font-bold text-lg">Add Patient</h3>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Name</span>
+                </label>
+                <input type="text" id="patientName" placeholder="Patient Name" class="input input-bordered" required />
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Email</span>
+                </label>
+                <input type="email" id="patientEmail" placeholder="Patient Email" class="input input-bordered" required />
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Phone</span>
+                </label>
+                <input type="tel" id="patientPhone" placeholder="Patient Phone" class="input input-bordered" required />
+            </div>
+            <div class="modal-action">
+                <button class="btn" onclick="closeAddPatientModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="addPatient()">Add Patient</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/patients.js"></script>
+</body>
+</html>
